@@ -4,5 +4,11 @@
     "service": "juice-shop",
     "workspaceFolder": "/workspace",
     "forwardPorts": [3000],
-    "postCreateCommand": "echo 'OWASP Juice Shop is ready for testing!'"
+    "postCreateCommand": "echo 'OWASP Juice Shop is ready for testing!'",
+    "extensions": [
+        "dbaeumer.vscode-eslint",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker"
+    ]
 }
