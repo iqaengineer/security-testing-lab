@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  juice-shop:
+    image: bkimminich/juice-shop
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=ctf
+    networks:
+      - juicenet
+
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: insecure_root_password
+      MYSQL_DATABASE: juiceshop
+      MYSQL_USER: juiceuser
+      MYSQL_PASSWORD: juicepassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - juicenet
+
+networks:
+  juicenet:
+
+volumes:
+  mysql-data:
