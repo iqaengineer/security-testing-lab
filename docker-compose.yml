@@ -2,28 +2,47 @@ version: '3'
 
 services:
   juice-shop:
-    image: bkimminich/juice-shop
+    image: bkimminich/juice-shop:latest
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=ctf
     networks:
       - juicenet
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   database:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: insecure_root_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
       MYSQL_DATABASE: juiceshop
       MYSQL_USER: juiceuser
-      MYSQL_PASSWORD: juicepassword
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
       - juicenet
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 networks:
   juicenet:
+    driver: bridge
 
 volumes:
   mysql-data:
+
+secrets:
+  db_root_password:
+    file: ./secrets/db_root_password.txt
+  db_password:
+    file: ./secrets/db_password.txt
