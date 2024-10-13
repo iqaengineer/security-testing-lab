@@ -10,20 +10,5 @@ services:
     networks:
       - juicenet
 
-  database:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: juiceshop
-      MYSQL_USER: juiceuser
-      MYSQL_PASSWORD: userpassword
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - juicenet
-
 networks:
   juicenet:
-
-volumes:
-  mysql-data:
