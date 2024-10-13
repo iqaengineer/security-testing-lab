@@ -2,13 +2,8 @@
     "name": "Juice Shop Security Lab",
     "dockerComposeFile": "../docker-compose.yml",
     "service": "juice-shop",
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/juice-shop",
     "forwardPorts": [3000],
     "postCreateCommand": "echo 'OWASP Juice Shop is ready for testing!'",
-    "extensions": [
-        "dbaeumer.vscode-eslint",
-        "mhutchie.git-graph",
-        "eamodio.gitlens",
-        "ms-azuretools.vscode-docker"
-    ]
+    "postStartCommand": "docker-compose up -d"
 }
