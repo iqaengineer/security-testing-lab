@@ -1,6 +1,6 @@
 {
     "name": "Juice Shop Security Lab",
-    "dockerComposeFile": "../docker-compose.yml",
+    "dockerComposeFile": "docker-compose.yml",
     "service": "juice-shop",
     "workspaceFolder": "/juice-shop",
     "forwardPorts": [3000],
