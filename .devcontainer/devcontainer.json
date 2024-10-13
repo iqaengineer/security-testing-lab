@@ -2,7 +2,7 @@
     "name": "Juice Shop Security Lab",
     "dockerComposeFile": "../docker-compose.yml",
     "service": "juice-shop",
-    "workspaceFolder": "/juice-shop",
+    "workspaceFolder": "/workspace",  // Измените на /workspace
     "forwardPorts": [3000],
     "postCreateCommand": "echo 'OWASP Juice Shop is ready for testing!'",
     "postStartCommand": "docker-compose up -d"
