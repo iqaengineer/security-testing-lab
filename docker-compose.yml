@@ -1,20 +1,14 @@
-version: '3'
+version: '3.8'
 
 services:
   juice-shop:
-    image: bkimminich/juice-shop:latest
+    image: bkimminich/juice-shop
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=ctf
     networks:
       - juicenet
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
   database:
     image: mysql:5.7
@@ -27,16 +21,12 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - juicenet
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+    secrets:
+      - db_root_password
+      - db_password
 
 networks:
   juicenet:
-    driver: bridge
 
 volumes:
   mysql-data:
