@@ -1,16 +1,8 @@
 {
-  "name": "Security Testing Lab",
-  "dockerFile": "Dockerfile",
-  "appPort": "3000:3000",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "dbaeumer.vscode-eslint"
-      ],
-      "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-      }
-    }
-  },
-  "postCreateCommand": "npm install"
+    "name": "Juice Shop Security Lab",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "juice-shop",
+    "workspaceFolder": "/workspace",
+    "forwardPorts": [3000],
+    "postCreateCommand": "echo 'OWASP Juice Shop is ready for testing!'"
 }
